@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %} Homepage {% endblock %}
+
+{% block body %}
+
+
+
+    Burası Anasayfa
+
+    <br><br><br>
+
+    {% if request.user.is_authenticated %}
+        Hoşgeldiniz, Kullanıcı: {{ request.user.get_full_name }}
+    {% else %}
+        Hoşgeldiniz, Kullanıcı: Yok
+    {% endif %}
+
+
+
+{% endblock %}

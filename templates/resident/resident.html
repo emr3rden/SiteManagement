@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %} Site Yönetimi {% endblock %}
+
+{% block body %}
+
+
+
+    <div class="container">
+
+        {% for residents in resident %}
+
+            <div class = "row">
+
+                <div class = "col-md-12">
+
+                    <div class = "caption">
+
+                        <h5>E-Posta: <font color="red">{{ residents.email}}</font></h5>
+                        <h5>İsim Soyisim: <font color="red">{{ residents.get_full_name}}</font></h5>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <br><br><br>
+
+        {% endfor %}
+
+
+        <nav aria-label="Page navigation example">
+
+            <ul class="pagination pagination-lg justify-content-center">
+
+                <li class="page-item">
+
+
+
+                    {% if residents.has_previous %}
+
+                        <a class="page-link" href="?page={{ residents.previous_page_number }}" aria-label="Previous">
+
+                            <span aria-hidden="true">&laquo;</span>
+
+                        </a>
+
+                    {% endif %}
+
+
+
+                <li class="page-item">
+
+
+
+                    {% if residents.has_next %}
+
+                        <a class="page-link" href="?page={{ residents.next_page_number }}" aria-label="Next">
+
+                            <span aria-hidden="true">&laquo;</span>
+
+                        </a>
+
+                    {% endif %}
+
+
+
+                </li>
+
+            </ul>
+
+        </nav>
+
+    </div>
+
+
+
+{% endblock %}

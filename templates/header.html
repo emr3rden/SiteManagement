@@ -1,0 +1,147 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+
+
+
+<!--------------------------------------------------- Responsive --------------------------------------------------->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+<!------------------------------------------ Responsive -------------------------------------->
+
+
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+
+
+            <ul class="navbar-nav">
+
+
+
+                {% if request.user.is_authenticated %}
+                {% else %}
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url "login" %}">Giriş</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url "register" %}">Üye Ol</a>
+                    </li>
+                {% endif %}
+
+
+
+                {% if request.user.is_authenticated %}
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url "logout" %}">Çıkış</a>
+                    </li>
+                {% endif %}
+
+
+
+                {% if request.user.is_authenticated and request.user.get_username == 'Manager' %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin">Admin Paneli</a>
+                </li>
+                 {% endif %}
+
+
+
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url "homepage" %}">Anasayfa</a>
+                </li>
+
+
+
+                {% if request.user.is_authenticated and request.user.get_username == 'Manager' %}
+                    <li class="nav-item dropdown nav-item active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Çalışanlar</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{% url 'personnel_create' %}">EKLE</a>
+                            <a class="dropdown-item" href="{% url 'personnel_electric' %}">Elektrik İşleri</a>
+                            <a class="dropdown-item" href="{% url 'personnel_elevator' %}">Asansör İşleri</a>
+                            <a class="dropdown-item" href="{% url 'personnel_garden' %}">Bahçe İşleri</a>
+                            <a class="dropdown-item" href="{% url 'personnel_apartment' %}">Bina İşleri</a>
+                        </div>
+                    </li>
+                {% endif %}
+
+
+
+                {% if request.user.is_authenticated and request.user.get_username == 'Manager' %}
+                    <li class="nav-item dropdown nav-item active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Daire Sakinleri</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{% url 'resident_create' %}">EKLE</a>
+                            <a class="dropdown-item" href="{% url 'resident_host' %}">Ev Sahipleri</a>
+                            <a class="dropdown-item" href="{% url 'resident_tenant' %}">Kiracılar</a>
+                        </div>
+                    </li>
+                {% endif %}
+
+
+
+                {% if request.user.is_authenticated and request.user.get_username == 'Manager' %}
+                    <li class="nav-item active">
+                        <a class="nav-link align-right" href="{% url 'problem_manager' %}">Sorunlar</a>
+                    </li>
+                {% endif %}
+
+
+
+                {% if request.user.is_authenticated and request.user.get_username == 'Electric' %}
+                    <li class="nav-item active">
+                        <a class="nav-link align-right" href="{% url 'problem_electric' %}">Sorunlar</a>
+                    </li>
+                {% endif %}
+
+
+
+                {% if request.user.is_authenticated and request.user.get_username == 'Elevator' %}
+                    <li class="nav-item active">
+                        <a class="nav-link align-right" href="{% url 'problem_elevator' %}">Sorunlar</a>
+                    </li>
+                {% endif %}
+
+
+
+                {% if request.user.is_authenticated and request.user.get_username == 'Garden' %}
+                    <li class="nav-item active">
+                        <a class="nav-link align-right" href="{% url 'problem_garden' %}">Sorunlar</a>
+                    </li>
+                {% endif %}
+
+
+
+                {% if request.user.is_authenticated and request.user.get_username == 'Apartment' %}
+                    <li class="nav-item active">
+                        <a class="nav-link align-right" href="{% url 'problem_apartment' %}">Sorunlar</a>
+                    </li>
+                {% endif %}
+
+
+
+                {% if request.user.is_authenticated and request.user.get_username == 'Host' or request.user.get_username == 'Tenant' %}
+                    <li class="nav-item active">
+                        <a class="nav-link align-right" href="{% url 'problem_resident' %}">Sorunlarım</a>
+                    </li>
+                {% endif %}
+
+
+
+                {% if request.user.is_authenticated and request.user.get_username == 'Host' or request.user.get_username == 'Tenant' %}
+                    <li class="nav-item active">
+                        <a class="nav-link align-right" href="{% url "problem_create" %}">Sorun Ekle</a>
+                    </li>
+                {% endif %}
+
+
+
+            </ul>
+
+
+
+        </div>
+
+
+
+</nav>
